@@ -1,0 +1,43 @@
+# number guessing game!
+import random
+
+
+def main():
+    num = random.randint(0, 10)
+    game(num)
+
+
+def game(num):  # plays game until user runs out of attempts or wins
+    end = 0
+    attempt = 5
+    print("attempts left", attempt)
+    while end == 0:
+        guess = input("guess the number > ")
+        try:
+            guess = int(guess)
+            if 10 >= guess >= 0:
+                if guess > num:
+                    print("you guessed a little high")
+                    attempt -= 1
+                    print("attempts left", attempt)
+                elif guess < num:
+                    print("you guessed a little low")
+                    attempt -= 1
+                    print("attempts left", attempt)
+
+                elif guess == num:
+                    print("you won the number was", num)
+                    print("you had", attempt, "attempts left")
+                    end = 1
+                if attempt == 0:
+                    print("darn you goofed, the number was", num)
+                    end = 1
+
+            else:
+                print("that is not between 0-10")
+
+        except ValueError:
+            print("please use a number")
+
+
+main()
